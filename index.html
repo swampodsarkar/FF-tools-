@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Free Fire Kingdom - Download the best Free Fire mods, skins, and resources">
+<meta property="og:title" content="🔥 Free Fire Kingdom 🔥">
+<meta property="og:description" content="Download the best Free Fire mods, skins, and resources">
+<meta property="og:image" content="https://free-fire-kingdom.firebasestorage.app/social-share.jpg">
+<title>🔥 Free Fire Kingdom 🔥</title>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a1d26;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff5c00, #ff7a00);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #e06000, #ff5c00);
+  }
+
+  /* Base Styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #0f1117 0%, #1a1d26 100%);
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0f1117;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  }
+  #preloader.fade-out {
+    opacity: 0;
+  }
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #ff7a00;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  @keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .loader-text {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #ff7a00;
+    text-align: center;
+  }
+
+  /* Header with Navigation */
+  header {
+    background: linear-gradient(90deg, #1c1f2a 0%, #222533 100%);
+    padding: 1rem;
+    box-shadow: 0 0 15px 3px rgba(255, 122, 0, 0.25);
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #ff5c00, #ff9a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 12px rgba(255, 92, 0, 0.3);
+    user-select: none;
+    text-decoration: none;
+  }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ff7a00;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  nav a:hover {
+    color: #ff7a00;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff7a00;
+    transition: width 0.3s ease;
+  }
+  nav a:hover::after {
+    width: 100%;
+  }
+  .theme-switcher {
+    background: none;
+    border: none;
+    color: #fdcb6e;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+
+  /* Notice Banner */
+  #noticeBanner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 580px;
+    width: 90%;
+    background: linear-gradient(135deg, #ff5c00cc, #ff9a0099);
+    color: #fff;
+    padding: 1rem 1.6rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 0 12px #ff5c00cc, 0 0 30px 4px #ff7a0099;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    user-select: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: saturate(180%) blur(8px);
+  }
+  #noticeBanner.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #noticeBanner img {
+    height: 28px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .close-notice {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+  }
+
+  /* Visitor Count */
+  #visitorCount {
+    position: fixed;
+    top: 90px;
+    right: 16px;
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    z-index: 1000;
+    width: auto;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  #visitorCount:hover {
+    transform: scale(1.05);
+  }
+  #visitorCount svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+  .visitor-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .visitor-icon i {
+    font-size: 1rem;
+  }
+
+  /* Search Box */
+  #searchContainer {
+    position: fixed;
+    top: 90px;
+    left: 16px;
+    z-index: 1000;
+    width: 160px;
+  }
+  #searchBox {
+    width: 100%;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    background: rgba(30, 31, 41, 0.8);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+  #searchBox:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    width: 200px;
+  }
+  #searchBox::placeholder {
+    color: #aaa;
+  }
+
+  /* Filter Controls */
+  #filterControls {
+    position: fixed;
+    top: 140px;
+    left: 16px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(30, 31, 41, 0.8);
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .filter-btn {
+    background: #2d2f3a;
+    color: #e0e0e0;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .filter-btn:hover {
+    background: #3d3f4a;
+  }
+  .filter-btn.active {
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+  }
+  .filter-btn i {
+    font-size: 0.9rem;
+  }
+
+  /* Main Content */
+  main {
+    flex-grow: 1;
+    max-width: 1100px;
+    margin: 7rem auto 2rem;
+    padding: 0 1rem;
+    min-height: 60vh;
+  }
+  #contentSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.2rem;
+  }
+
+  /* Cards */
+  article.card {
+    background: rgba(34, 37, 51, 0.8);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 122, 0, 0.15), inset 0 0 10px rgba(255, 122, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border: 1px solid rgba(255, 122, 0, 0.1);
+  }
+  article.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.3), inset 0 0 15px rgba(255, 122, 0, 0.15);
+  }
+  .card-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    z-index: 2;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+  .paid-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #ff2a00, #ff5c00);
+    color: white;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    z-index: 2;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+  article.card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-bottom: 2px solid #ff7a00;
+    transition: filter 0.3s ease;
+  }
+  article.card:hover img {
+    filter: brightness(1.1);
+  }
+  .card-content {
+    padding: 0.7rem 0.9rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-content h3 {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 0.3rem 0;
+    color: #ff7a00;
+    user-select: text;
+    line-height: 1.3;
+  }
+  .card-content p {
+    font-size: 0.8rem;
+    color: #ddd;
+    flex-grow: 1;
+    margin: 0 0 0.5rem 0;
+    user-select: text;
+    line-height: 1.3;
+  }
+  .card-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: #aaa;
+  }
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-actions a {
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(255, 122, 0, 0.4);
+    transition: all 0.3s ease;
+    user-select: none;
+    font-size: 0.85rem;
+  }
+  .card-actions a:hover {
+    background: linear-gradient(135deg, #e06000, #ff5c00);
+    transform: translateY(-2px);
+  }
+  .like-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .like-btn:hover {
+    color: #ff7a00;
+  }
+  .like-btn.liked {
+    color: #ff0000;
+    animation: heartBeat 0.5s;
+  }
+  @keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+  }
+
+  /* Back to Top Button */
+  #backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #backToTop.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  #backToTop:hover {
+    background: linear-gradient(135deg, #e06000, #ff5c00);
+    transform: translateY(-3px);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(90deg, #1c1f2a 0%, #222533 100%);
+    color: #777;
+    font-size: 0.9rem;
+    user-select: none;
+    box-shadow: inset 0 1px 4px rgba(255, 122, 0, 0.15);
+    max-width: 1100px;
+    margin: 0 auto 1rem auto;
+    border-radius: 12px;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .social-links a {
+    color: #777;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+  }
+  .social-links a:hover {
+    color: #ff7a00;
+    transform: translateY(-3px);
+  }
+  .facebook:hover { color: #3b5998; }
+  .youtube:hover { color: #ff0000; }
+  .telegram:hover { color: #0088cc; }
+  .instagram:hover { 
+    color: transparent;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  /* Live Chat Button */
+  #chatButton {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  #chatButton:hover {
+    background: linear-gradient(135deg, #e06000, #ff5c00);
+    transform: scale(1.1);
+  }
+  .chat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff0000;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Live Chat Box */
+  #chatBox {
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    width: 300px;
+    max-height: 400px;
+    background: linear-gradient(135deg, #1c1f2a 0%, #222533 100%);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #ff7a00;
+  }
+  #chatBox.show {
+    display: flex;
+  }
+  .chat-header {
+    background: linear-gradient(90deg, #ff5c00, #ff7a00);
+    color: white;
+    padding: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  .close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .chat-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .message {
+    background: rgba(45, 48, 61, 0.7);
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 0.85rem;
+  }
+  .message.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+  }
+  .message.admin {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #00b4ff, #0088ff);
+    color: white;
+  }
+  .message span {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 3px;
+    font-size: 0.8rem;
+  }
+  .chat-input {
+    display: flex;
+    padding: 0.8rem;
+    background: rgba(45, 48, 61, 0.7);
+    border-top: 1px solid rgba(255, 122, 0, 0.2);
+  }
+  #chatMessageInput {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(30, 31, 41, 0.8);
+    color: white;
+    font-size: 0.9rem;
+  }
+  #chatMessageInput:focus {
+    outline: none;
+  }
+  #sendMessageBtn {
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0 1rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  #sendMessageBtn:hover {
+    background: linear-gradient(135deg, #e06000, #ff5c00);
+  }
+
+  /* Login Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal.show {
+    display: flex;
+  }
+  .modal-content {
+    background: linear-gradient(135deg, #1c1f2a 0%, #222533 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.5);
+    border: 1px solid rgba(255, 122, 0, 0.2);
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .modal-header h3 {
+    margin: 0;
+    color: #ff7a00;
+    font-size: 1.3rem;
+  }
+  .close-modal {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .modal-body {
+    margin-bottom: 1.5rem;
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .modal-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: none;
+    background: rgba(45, 48, 61, 0.7);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  .modal-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .modal-btn-primary {
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+  }
+  .modal-btn-primary:hover {
+    background: linear-gradient(135deg, #e06000, #ff5c00);
+  }
+  .modal-btn-secondary {
+    background: #2d2f3a;
+    color: white;
+  }
+  .modal-btn-secondary:hover {
+    background: #3d3f4a;
+  }
+
+  /* Payment Modal */
+  .payment-methods {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .payment-method {
+    flex: 1;
+    padding: 1rem;
+    background: rgba(45, 48, 61, 0.7);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .payment-method.selected {
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    box-shadow: 0 0 10px rgba(255, 122, 0, 0.5);
+    color: white;
+  }
+  .payment-method i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .payment-number {
+    font-weight: bold;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background: rgba(45, 48, 61, 0.7);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .payment-instructions {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Success Modal */
+  .success-icon {
+    text-align: center;
+    font-size: 3rem;
+    color: #4caf50;
+    margin-bottom: 1rem;
+  }
+
+  /* Light Theme */
+  body.light-theme {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    color: #333;
+  }
+  body.light-theme header {
+    background: linear-gradient(90deg, #ffffff 0%, #f5f5f5 100%);
+    box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
+  }
+  body.light-theme .logo {
+    background: linear-gradient(45deg, #ff5c00, #ff9a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+  body.light-theme nav a {
+    color: #555;
+  }
+  body.light-theme nav a:hover {
+    color: #ff7a00;
+  }
+  body.light-theme article.card {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  body.light-theme .card-content h3 {
+    color: #ff7a00;
+  }
+  body.light-theme .card-content p {
+    color: #666;
+  }
+  body.light-theme footer {
+    background: linear-gradient(90deg, #ffffff 0%, #f5f5f5 100%);
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+  }
+  body.light-theme #searchBox {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  body.light-theme #filterControls {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  body.light-theme .filter-btn {
+    background: #f0f0f0;
+    color: #555;
+  }
+  body.light-theme .filter-btn:hover {
+    background: #e0e0e0;
+  }
+  body.light-theme .message {
+    background: #f0f0f0;
+    color: #333;
+  }
+  body.light-theme .chat-input {
+    background: #f0f0f0;
+  }
+  body.light-theme #chatMessageInput {
+    background: #ffffff;
+    color: #333;
+  }
+  body.light-theme .modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  }
+  body.light-theme .modal-input {
+    background: #f0f0f0;
+    color: #333;
+  }
+  body.light-theme .payment-method {
+    background: #f0f0f0;
+    color: #333;
+  }
+  body.light-theme .payment-method.selected {
+    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    color: white;
+  }
+  body.light-theme .payment-number {
+    background: #f0f0f0;
+    color: #333;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: block;
+    }
+    nav {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #1c1f2a 0%, #222533 100%);
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      pointer-events: none;
+    }
+    nav.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #searchContainer {
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+    }
+    #searchBox:focus {
+      width: 90%;
+    }
+    #filterControls {
+      top: 190px;
+      left: 50%;
+      transform: translateX(-50%);
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 90%;
+      justify-content: center;
+    }
+    #visitorCount {
+      top: 140px;
+      right: 16px;
+      transform: none;
+    }
+    #contentSection {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 120px;
+    }
+    main {
+      margin-top: 5rem;
+    }
+    #noticeBanner {
+      top: 50%;
+    }
+    article.card img {
+      height: 90px;
+    }
+    #chatButton {
+      width: 50px;
+      height: 50px;
+      bottom: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+    }
+    #chatBox {
+      width: 280px;
+      left: 20px;
+      bottom: 80px;
+    }
+    .payment-methods {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 1.5rem;
+    }
+    #contentSection {
+      grid-template-columns: 1fr 1fr;
+    }
+    article.card img {
+      height: 80px;
+    }
+    #visitorCount {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+    }
+    .visitor-icon i {
+      font-size: 0.9rem;
+    }
+    #backToTop {
+      width: 40px;
+      height: 40px;
+      font-size: 1.1rem;
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+</style>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader"></div>
+  <div class="loader-text">Loading Free Fire Kingdom...</div>
+</div>
+
+<header>
+  <a href="#" class="logo">🔥 Free Fire Kingdom 🔥</a>
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+  <nav>
+    <a href="#top"><i class="fas fa-home"></i> Home</a>
+    <a href="#trending"><i class="fas fa-fire"></i> Trending</a>
+    <a href="#new"><i class="fas fa-star"></i> New</a>
+    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+    <button class="theme-switcher" aria-label="Toggle theme">🌓</button>
+  </nav>
+</header>
+
+<!-- Notice Banner -->
+<div id="noticeBanner" role="alert" aria-live="polite" aria-atomic="true">
+  <button class="close-notice" aria-label="Close notice">×</button>
+</div>
+
+<!-- Visitor Count -->
+<div id="visitorCount" aria-label="Current Visitors">
+  <div class="visitor-icon">
+    <i class="fas fa-users"></i>
+  </div>
+  <span id="visitorCountNumber">0</span>
+</div>
+
+<!-- Search Box -->
+<div id="searchContainer">
+  <input type="text" id="searchBox" placeholder="🔍 Search content..." aria-label="Search content">
+</div>
+
+<!-- Filter Controls -->
+<div id="filterControls">
+  <button class="filter-btn active" data-filter="all"><i class="fas fa-layer-group"></i> All</button>
+  <button class="filter-btn" data-filter="top"><i class="fas fa-crown"></i> Top</button>
+  <button class="filter-btn" data-filter="new"><i class="fas fa-bolt"></i> New</button>
+  <button class="filter-btn" data-filter="emulator"><i class="fas fa-gamepad"></i> Emulators</button>
+  <button class="filter-btn" data-filter="sensi"><i class="fas fa-bullseye"></i> Sensi</button>
+</div>
+
+<main>
+  <section id="contentSection" aria-label="Free Fire Contents">
+    <!-- Cards loaded dynamically -->
+  </section>
+</main>
+
+<footer>
+  <div id="footerText">Made by Swampod Sarkar | Powered by Ghost Eye</div>
+  <div class="social-links">
+    <a href="#" class="facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#" class="telegram" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+    <a href="#" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<!-- Live Chat Button -->
+<button id="chatButton" aria-label="Open live chat">
+  <i class="fas fa-comment-dots"></i>
+  <span class="chat-badge" id="unreadCount" style="display: none;">0</span>
+</button>
+
+<!-- Live Chat Box -->
+<div id="chatBox">
+  <div class="chat-header">
+    <span>Live Support Chat</span>
+    <button class="close-chat" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="chatMessageInput" placeholder="Type your message..." aria-label="Type your message">
+    <button id="sendMessageBtn">Send</button>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Login Required</h3>
+      <button class="close-modal" aria-label="Close modal">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="modal-input" id="usernameInput" placeholder="Enter your username">
+      <p style="font-size: 0.9rem; color: #aaa;">Login to download paid content and access all features</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn modal-btn-secondary close-modal">Cancel</button>
+      <button class="modal-btn modal-btn-primary" id="loginSubmitBtn">Login</button>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal" id="paymentModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Complete Payment</h3>
+      <button class="close-modal" aria-label="Close modal">×</button>
+    </div>
+    <div class="modal-body">
+      <p>To download this paid content, please complete the payment:</p>
+      <div class="payment-methods">
+        <div class="payment-method selected" data-method="bkash">
+          <i class="fas fa-mobile-alt"></i>
+          <div>bKash</div>
+        </div>
+        <div class="payment-method" data-method="nagad">
+          <i class="fas fa-wallet"></i>
+          <div>Nagad</div>
+        </div>
+      </div>
+      <div class="payment-number" id="paymentNumber">01767882562</div>
+      <div class="payment-instructions">
+        1. Send <span id="paymentAmount">50</span> BDT to the number above<br>
+        2. Enter the Transaction ID below<br>
+        3. Click Submit to verify your payment
+      </div>
+      <input type="text" class="modal-input" id="transactionIdInput" placeholder="Enter Transaction ID">
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn modal-btn-secondary close-modal">Cancel</button>
+      <button class="modal-btn modal-btn-primary" id="submitPaymentBtn">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Success Modal -->
+<div class="modal" id="successModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Payment Submitted</h3>
+      <button class="close-modal" aria-label="Close modal">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <p>Your payment has been submitted successfully!</p>
+      <p>Please wait 2 minutes while we verify your transaction. The download link will be activated automatically.</p>
+      <p>Thank you for your purchase!</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn modal-btn-primary close-modal">OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDX7Z8o5xVJa8cSHvaurZg4FkJvN8mJuto",
+    authDomain: "free-fire-kingdom.firebaseapp.com",
+    databaseURL: "https://free-fire-kingdom-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "free-fire-kingdom",
+    storageBucket: "free-fire-kingdom.firebasestorage.app",
+    messagingSenderId: "889375613179",
+    appId: "1:889375613179:web:b36bd72dd208b101e0d05e",
+    measurementId: "G-0EWSZ3SFX1"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const auth = firebase.auth();
+
+  // DOM Elements
+  const preloader = document.getElementById('preloader');
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('nav');
+  const contentSection = document.getElementById('contentSection');
+  const noticeBanner = document.getElementById('noticeBanner');
+  const closeNoticeBtn = document.querySelector('.close-notice');
+  const visitorCountNumber = document.getElementById('visitorCountNumber');
+  const searchBox = document.getElementById('searchBox');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const backToTopBtn = document.getElementById('backToTop');
+  const themeSwitcher = document.querySelector('.theme-switcher');
+  const chatButton = document.getElementById('chatButton');
+  const chatBox = document.getElementById('chatBox');
+  const closeChatBtn = document.querySelector('.close-chat');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatMessageInput = document.getElementById('chatMessageInput');
+  const sendMessageBtn = document.getElementById('sendMessageBtn');
+  const unreadCount = document.getElementById('unreadCount');
+  const footerText = document.getElementById('footerText');
+  
+  // Modal elements
+  const loginModal = document.getElementById('loginModal');
+  const paymentModal = document.getElementById('paymentModal');
+  const successModal = document.getElementById('successModal');
+  const closeModalBtns = document.querySelectorAll('.close-modal');
+  const usernameInput = document.getElementById('usernameInput');
+  const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+  const paymentMethods = document.querySelectorAll('.payment-method');
+  const paymentNumber = document.getElementById('paymentNumber');
+  const paymentAmount = document.getElementById('paymentAmount');
+  const transactionIdInput = document.getElementById('transactionIdInput');
+  const submitPaymentBtn = document.getElementById('submitPaymentBtn');
+
+  // User state
+  let currentUser = null;
+  let chatOpen = false;
+  let unreadMessages = 0;
+  let lastMessageTime = 0;
+  let visitorId = null;
+  let currentPaidContent = null;
+  let selectedPaymentMethod = 'bkash';
+  let userChats = {}; // To track individual user chats
+
+  // Close modals when clicking close button
+  closeModalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      loginModal.classList.remove('show');
+      paymentModal.classList.remove('show');
+      successModal.classList.remove('show');
+    });
+  });
+
+  // Close modals when clicking outside
+  window.addEventListener('click', (e) => {
+    if (e.target === loginModal) loginModal.classList.remove('show');
+    if (e.target === paymentModal) paymentModal.classList.remove('show');
+    if (e.target === successModal) successModal.classList.remove('show');
+  });
+
+  // Payment method selection
+  paymentMethods.forEach(method => {
+    method.addEventListener('click', () => {
+      paymentMethods.forEach(m => m.classList.remove('selected'));
+      method.classList.add('selected');
+      selectedPaymentMethod = method.dataset.method;
+      
+      // Update payment number based on selection
+      if (selectedPaymentMethod === 'bkash') {
+        paymentNumber.textContent = '01767882562';
+      } else if (selectedPaymentMethod === 'nagad') {
+        paymentNumber.textContent = '01767882562';
+      }
+    });
+  });
+
+  // Login submit
+  loginSubmitBtn.addEventListener('click', () => {
+    const username = usernameInput.value.trim();
+    if (username) {
+      localStorage.setItem('ffk_username', username);
+      currentUser = { username };
+      loginModal.classList.remove('show');
+      loadContent(); // Reload content to reflect login status
+      initChat(); // Initialize chat after login
+    }
+  });
+
+  // Submit payment
+  submitPaymentBtn.addEventListener('click', () => {
+    const transactionId = transactionIdInput.value.trim();
+    if (!transactionId) {
+      alert('Please enter your transaction ID');
+      return;
+    }
+    
+    if (currentPaidContent) {
+      const paymentData = {
+        username: currentUser.username,
+        contentId: currentPaidContent.key,
+        contentTitle: currentPaidContent.title,
+        paymentMethod: selectedPaymentMethod,
+        transactionId: transactionId,
+        amount: currentPaidContent.price || 50,
+        timestamp: Date.now(),
+        status: 'pending'
+      };
+      
+      db.ref('payments').push().set(paymentData)
+        .then(() => {
+          paymentModal.classList.remove('show');
+          successModal.classList.add('show');
+          
+          // Reset after submission
+          currentPaidContent = null;
+          transactionIdInput.value = '';
+        })
+        .catch(err => {
+          alert('Error submitting payment: ' + err.message);
+        });
+    }
+  });
+
+  // Preloader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 500);
+    }, 1500);
+  });
+
+  // Mobile navigation toggle
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  // Close notice banner
+  closeNoticeBtn.addEventListener('click', () => {
+    noticeBanner.classList.remove('show');
+  });
+
+  // Theme switcher
+  themeSwitcher.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    themeSwitcher.textContent = isLight ? '🌙' : '☀️';
+  });
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    themeSwitcher.textContent = '🌙';
+  }
+
+  // Back to top button
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Live Chat functionality
+  chatButton.addEventListener('click', () => {
+    if (!currentUser || !currentUser.username) {
+      loginModal.classList.add('show');
+      return;
+    }
+    
+    chatOpen = !chatOpen;
+    chatBox.style.display = chatOpen ? 'flex' : 'none';
+    if (chatOpen) {
+      unreadMessages = 0;
+      unreadCount.style.display = 'none';
+      loadUserChat();
+    }
+  });
+
+  closeChatBtn.addEventListener('click', () => {
+    chatOpen = false;
+    chatBox.style.display = 'none';
+  });
+
+  // Send message
+  sendMessageBtn.addEventListener('click', sendMessage);
+  chatMessageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  function sendMessage() {
+    const message = chatMessageInput.value.trim();
+    if (message && currentUser) {
+      const timestamp = Date.now();
+      db.ref(`userChats/${currentUser.username}/messages`).push().set({
+        userId: currentUser.username,
+        username: currentUser.username,
+        message: message,
+        timestamp: timestamp,
+        isAdmin: false
+      });
+      
+      // Also send to admin chat
+      db.ref('adminChats').push().set({
+        userId: currentUser.username,
+        username: currentUser.username,
+        message: message,
+        timestamp: timestamp,
+        isAdmin: false
+      });
+      
+      chatMessageInput.value = '';
+      lastMessageTime = timestamp;
+    }
+  }
+
+  // Load user chat messages
+  function loadUserChat() {
+    if (!currentUser || !currentUser.username) return;
+    
+    chatMessages.innerHTML = '';
+    
+    db.ref(`userChats/${currentUser.username}/messages`).orderByChild('timestamp').limitToLast(50).on('value', snapshot => {
+      const messages = [];
+      snapshot.forEach(child => {
+        messages.push(child.val());
+      });
+      
+      messages.forEach(msg => {
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${msg.isAdmin ? 'admin' : 'user'}`;
+        messageElement.innerHTML = `
+          <span>${msg.username}</span>
+          ${msg.message}
+        `;
+        chatMessages.appendChild(messageElement);
+        
+        // Track unread messages if chat is closed
+        if (!chatOpen && msg.timestamp > lastMessageTime && msg.isAdmin) {
+          unreadMessages++;
+          unreadCount.textContent = unreadMessages;
+          unreadCount.style.display = 'inline-block';
+        }
+      });
+      
+      // Scroll to bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      lastMessageTime = Date.now();
+    });
+  }
+
+  // Anonymous auth for chat
+  function initChat() {
+    // Check for saved username
+    const savedUsername = localStorage.getItem('ffk_username');
+    if (savedUsername) {
+      currentUser = { username: savedUsername };
+      loadUserChat();
+    }
+    
+    // Listen for admin replies
+    if (currentUser && currentUser.username) {
+      db.ref(`userChats/${currentUser.username}/messages`).orderByChild('timestamp').limitToLast(1).on('child_added', snapshot => {
+        const msg = snapshot.val();
+        if (msg.isAdmin && !chatOpen) {
+          unreadMessages++;
+          unreadCount.textContent = unreadMessages;
+          unreadCount.style.display = 'inline-block';
+          
+          // Show notification
+          if (Notification.permission === 'granted') {
+            new Notification('New message from admin', {
+              body: msg.message
+            });
+          }
+        }
+      });
+    }
+  }
+
+  // Request notification permission
+  if ('Notification' in window) {
+    Notification.requestPermission();
+  }
+
+  // Search functionality
+  searchBox.addEventListener('input', () => {
+    const searchTerm = searchBox.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+      const title = card.querySelector('h3').textContent.toLowerCase();
+      const desc = card.querySelector('p').textContent.toLowerCase();
+      if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+
+  // Filter functionality
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      const filter = button.dataset.filter;
+      const cards = document.querySelectorAll('.card');
+      
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.style.display = 'flex';
+        } else {
+          const cardType = card.dataset.type || '';
+          if (cardType.includes(filter)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+
+  // Show notice with fade and auto hide
+  function showNotice(notice) {
+    if (!notice || (!notice.text && !notice.imageUrl)) {
+      noticeBanner.classList.remove('show');
+      noticeBanner.innerHTML = '';
+      return;
+    }
+    
+    let html = '';
+    if (notice.imageUrl) {
+      html += `<img src="${notice.imageUrl}" alt="Notice Image" />`;
+    }
+    if (notice.text) {
+      html += `<span>${notice.text}</span>`;
+    }
+    html += '<button class="close-notice">×</button>';
+    
+    noticeBanner.innerHTML = html;
+    noticeBanner.classList.add('show');
+
+    // Re-attach close event to new button
+    noticeBanner.querySelector('.close-notice').addEventListener('click', () => {
+      noticeBanner.classList.remove('show');
+    });
+
+    setTimeout(() => {
+      noticeBanner.classList.remove('show');
+    }, 5000);
+  }
+
+  // Handle download click
+  function handleDownloadClick(contentKey, contentData) {
+    if (contentData.isPaid) {
+      // For paid content, check if user is logged in
+      if (!currentUser || !currentUser.username) {
+        loginModal.classList.add('show');
+        return;
+      }
+      
+      // Check if user has already paid for this content
+      db.ref('paidUsers').orderByChild('username_contentId').equalTo(`${currentUser.username}_${contentKey}`).once('value')
+        .then(snapshot => {
+          if (snapshot.exists()) {
+            // User has paid, allow download
+            window.open(contentData.fileUrl, '_blank');
+            
+            // Increment download count
+            const newDownloads = (contentData.downloads || 0) + 1;
+            db.ref(`contents/${contentKey}/downloads`).set(newDownloads);
+          } else {
+            // Show payment modal
+            currentPaidContent = {
+              key: contentKey,
+              title: contentData.title,
+              price: contentData.price || 50
+            };
+            paymentAmount.textContent = currentPaidContent.price;
+            paymentModal.classList.add('show');
+          }
+        });
+    } else {
+      // For free content, just open the download link
+      window.open(contentData.fileUrl, '_blank');
+      
+      // Increment download count
+      const newDownloads = (contentData.downloads || 0) + 1;
+      db.ref(`contents/${contentKey}/downloads`).set(newDownloads);
+    }
+  }
+
+  // Load content cards
+  function loadContent() {
+    db.ref('contents').once('value').then(snapshot => {
+      const data = snapshot.val() || {};
+      contentSection.innerHTML = '';
+
+      // Sort by downloads desc
+      const entries = Object.entries(data).sort((a, b) => (b[1].downloads || 0) - (a[1].downloads || 0));
+
+      entries.forEach(([key, item]) => {
+        const imgSrc = item.imageUrl && item.imageUrl.trim() !== '' ? item.imageUrl : 'https://via.placeholder.com/160x100?text=No+Image';
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.dataset.type = item.type || '';
+        
+        // Add badge for new items (added in last 7 days)
+        const isNew = item.timestamp && (Date.now() - item.timestamp < 7 * 24 * 60 * 60 * 1000);
+        
+        card.innerHTML = `
+          ${isNew ? '<div class="card-badge">NEW</div>' : ''}
+          ${item.isPaid ? '<div class="paid-badge">PAID</div>' : ''}
+          <img src="${imgSrc}" alt="Image of ${item.title}" loading="lazy" />
+          <div class="card-content">
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <div class="card-stats">
+              <span>⬇️ ${item.downloads || 0}</span>
+              <span>❤️ ${item.likes || 0}</span>
+              ${item.isPaid ? `<span>💰 ${item.price || 50} BDT</span>` : ''}
+            </div>
+            <div class="card-actions">
+              <a href="#" class="download-btn" data-key="${key}">Download</a>
+              <button class="like-btn" aria-label="Like this content">❤️</button>
+            </div>
+          </div>
+        `;
+        contentSection.appendChild(card);
+        
+        // Add download button functionality
+        const downloadBtn = card.querySelector('.download-btn');
+        downloadBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          handleDownloadClick(key, item);
+        });
+        
+        // Add like button functionality
+        const likeBtn = card.querySelector('.like-btn');
+        likeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          likeBtn.classList.add('liked');
+          setTimeout(() => likeBtn.classList.remove('liked'), 500);
+          
+          // Update likes count in Firebase
+          const newLikes = (item.likes || 0) + 1;
+          db.ref(`contents/${key}/likes`).set(newLikes);
+        });
+      });
+    });
+
+    // Load notice and footer text
+    db.ref('settings').once('value').then(snapshot => {
+      const settings = snapshot.val() || {};
+      showNotice(settings.notice || null);
+      footerText.textContent = settings.footerText || 'Made by Swampod Sarkar | Powered by Ghost Eye';
+    });
+  }
+
+  // Track visitor count with Firebase presence (unique per IP)
+  function setupVisitorCount() {
+    // Generate a unique visitor ID based on IP (simplified approach)
+    visitorId = localStorage.getItem('visitorId');
+    if (!visitorId) {
+      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('visitorId', visitorId);
+    }
+
+    const visitorRef = db.ref('visitors/' + visitorId);
+    const connectedRef = db.ref('.info/connected');
+
+    connectedRef.on('value', snap => {
+      if (snap.val() === true) {
+        visitorRef.set({
+          timestamp: Date.now(),
+          userAgent: navigator.userAgent,
+          platform: navigator.platform
+        });
+        visitorRef.onDisconnect().remove();
+      }
+    });
+
+    // Count unique visitors
+    db.ref('visitors').on('value', snap => {
+      visitorCountNumber.textContent = snap.numChildren();
+    });
+  }
+
+  // Initialize
+  loadContent();
+  setupVisitorCount();
+  initChat();
+
+  // Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(registration => {
+        console.log('ServiceWorker registration successful');
+      }).catch(err => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
