@@ -4,13 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Free Fire Kingdom - Download the best Free Fire mods, skins, and resources">
-<meta property="og:title" content="🔥 Free Fire Kingdom 🔥">
+<meta property="og:title" content="🔥 Aim Zone  🔥">
 <meta property="og:description" content="Download the best Free Fire mods, skins, and resources">
 <meta property="og:image" content="https://free-fire-kingdom.firebasestorage.app/social-share.jpg">
-<title>🔥 Free Fire Kingdom 🔥</title>
+<title>🔥 Aim Zone 🔥</title>
 
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Tawilnk CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -152,7 +154,7 @@
     margin-left: 1rem;
   }
 
-  /* Notice Banner */
+  /* Notice Banner - Updated with Tawilnk animations */
   #noticeBanner {
     position: fixed;
     top: 50%;
@@ -170,17 +172,25 @@
     box-shadow: 0 0 12px #ff5c00cc, 0 0 30px 4px #ff7a0099;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s ease;
+    transition: all 0.6s ease;
     user-select: none;
     z-index: 9999;
     display: flex;
     align-items: center;
     gap: 12px;
     backdrop-filter: saturate(180%) blur(8px);
+    animation: none;
   }
   #noticeBanner.show {
     opacity: 1;
     pointer-events: auto;
+    animation: bounceIn 0.8s ease-out forwards;
+  }
+  @keyframes bounceIn {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+    70% { transform: translate(-50%, -50%) scale(0.95); }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
   }
   #noticeBanner img {
     height: 28px;
@@ -781,12 +791,71 @@
     line-height: 1.5;
   }
 
-  /* Success Modal */
+  /* Success Modal - Updated with Tawilnk animations */
+  #successModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+  #successModal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .success-content {
+    background: linear-gradient(135deg, #1c1f2a 0%, #222533 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.5);
+    border: 1px solid rgba(255, 122, 0, 0.2);
+    text-align: center;
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
   .success-icon {
     text-align: center;
     font-size: 3rem;
     color: #4caf50;
     margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  .success-content p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+  }
+  .progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+  }
+  .progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #ff5c00, #ff7a00);
+    border-radius: 3px;
+    transition: width 0.1s linear;
   }
 
   /* Light Theme */
@@ -988,11 +1057,11 @@
 <!-- Preloader -->
 <div id="preloader">
   <div class="loader"></div>
-  <div class="loader-text">Loading Free Fire Kingdom...</div>
+  <div class="loader-text">Loading Aim Zone...</div>
 </div>
 
 <header>
-  <a href="#" class="logo">🔥 Free Fire Kingdom 🔥</a>
+  <a href="#" class="logo">🔥 Aim Zone 🔥</a>
   <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
   <nav>
     <a href="#top"><i class="fas fa-home"></i> Home</a>
@@ -1120,24 +1189,20 @@
   </div>
 </div>
 
-<!-- Payment Success Modal -->
+<!-- Success Modal - Updated with progress bar -->
 <div class="modal" id="successModal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>Payment Submitted</h3>
-      <button class="close-modal" aria-label="Close modal">×</button>
+  <div class="success-content">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
     </div>
-    <div class="modal-body">
-      <div class="success-icon">
-        <i class="fas fa-check-circle"></i>
-      </div>
-      <p>Your payment has been submitted successfully!</p>
-      <p>Please wait 2 minutes while we verify your transaction. The download link will be activated automatically.</p>
-      <p>Thank you for your purchase!</p>
+    <h3>Payment Submitted</h3>
+    <p>Your payment has been submitted successfully!</p>
+    <p>Please wait while we verify your transaction. The download link will be activated automatically.</p>
+    <div class="progress-bar">
+      <div class="progress" id="paymentProgress"></div>
     </div>
-    <div class="modal-footer">
-      <button class="modal-btn modal-btn-primary close-modal">OK</button>
-    </div>
+    <p>Status: <span id="paymentStatus">Processing...</span></p>
+    <button class="modal-btn modal-btn-primary" id="closeSuccessModal" style="display: none;">Download Now</button>
   </div>
 </div>
 
@@ -1192,6 +1257,9 @@
   const paymentAmount = document.getElementById('paymentAmount');
   const transactionIdInput = document.getElementById('transactionIdInput');
   const submitPaymentBtn = document.getElementById('submitPaymentBtn');
+  const paymentProgress = document.getElementById('paymentProgress');
+  const paymentStatus = document.getElementById('paymentStatus');
+  const closeSuccessModal = document.getElementById('closeSuccessModal');
 
   // User state
   let currentUser = null;
@@ -1201,7 +1269,8 @@
   let visitorId = null;
   let currentPaidContent = null;
   let selectedPaymentMethod = 'bkash';
-  let userChats = {}; // To track individual user chats
+  let userChats = {};
+  let paymentCheckInterval = null;
 
   // Close modals when clicking close button
   closeModalBtns.forEach(btn => {
@@ -1209,14 +1278,22 @@
       loginModal.classList.remove('show');
       paymentModal.classList.remove('show');
       successModal.classList.remove('show');
+      clearInterval(paymentCheckInterval);
     });
   });
 
   // Close modals when clicking outside
   window.addEventListener('click', (e) => {
-    if (e.target === loginModal) loginModal.classList.remove('show');
-    if (e.target === paymentModal) paymentModal.classList.remove('show');
-    if (e.target === successModal) successModal.classList.remove('show');
+    if (e.target === loginModal) {
+      loginModal.classList.remove('show');
+    }
+    if (e.target === paymentModal) {
+      paymentModal.classList.remove('show');
+    }
+    if (e.target === successModal) {
+      successModal.classList.remove('show');
+      clearInterval(paymentCheckInterval);
+    }
   });
 
   // Payment method selection
@@ -1267,13 +1344,16 @@
         status: 'pending'
       };
       
-      db.ref('payments').push().set(paymentData)
+      const paymentRef = db.ref('payments').push();
+      paymentRef.set(paymentData)
         .then(() => {
           paymentModal.classList.remove('show');
           successModal.classList.add('show');
           
+          // Start checking payment status
+          checkPaymentStatus(paymentRef.key, currentPaidContent.key);
+          
           // Reset after submission
-          currentPaidContent = null;
           transactionIdInput.value = '';
         })
         .catch(err => {
@@ -1281,6 +1361,78 @@
         });
     }
   });
+
+  // Check payment status periodically
+  function checkPaymentStatus(paymentId, contentId) {
+    let progress = 0;
+    const maxTime = 120; // 2 minutes in seconds
+    let elapsed = 0;
+    
+    paymentProgress.style.width = '0%';
+    paymentStatus.textContent = 'Processing...';
+    closeSuccessModal.style.display = 'none';
+    
+    paymentCheckInterval = setInterval(() => {
+      elapsed += 1;
+      progress = Math.min((elapsed / maxTime) * 100, 100);
+      paymentProgress.style.width = `${progress}%`;
+      
+      // Check with Firebase
+      db.ref(`payments/${paymentId}/status`).once('value').then(snapshot => {
+        const status = snapshot.val();
+        
+        if (status === 'approved') {
+          // Payment approved
+          clearInterval(paymentCheckInterval);
+          paymentStatus.textContent = 'Approved!';
+          closeSuccessModal.style.display = 'block';
+          closeSuccessModal.textContent = 'Download Now';
+          
+          // Add user to paid users
+          db.ref('paidUsers').push().set({
+            username: currentUser.username,
+            contentId: contentId,
+            contentTitle: currentPaidContent.title,
+            amount: currentPaidContent.price || 50,
+            paymentMethod: selectedPaymentMethod,
+            transactionId: transactionIdInput.value.trim(),
+            timestamp: Date.now()
+          });
+          
+          // Set up download button
+          closeSuccessModal.onclick = () => {
+            successModal.classList.remove('show');
+            window.open(currentPaidContent.fileUrl, '_blank');
+            
+            // Increment download count
+            const newDownloads = (currentPaidContent.downloads || 0) + 1;
+            db.ref(`contents/${contentId}/downloads`).set(newDownloads);
+          };
+          
+        } else if (status === 'rejected') {
+          // Payment rejected
+          clearInterval(paymentCheckInterval);
+          paymentStatus.textContent = 'Rejected. Please contact support.';
+          closeSuccessModal.style.display = 'block';
+          closeSuccessModal.textContent = 'Close';
+          closeSuccessModal.onclick = () => {
+            successModal.classList.remove('show');
+          };
+        }
+      });
+      
+      // Timeout after maxTime
+      if (elapsed >= maxTime) {
+        clearInterval(paymentCheckInterval);
+        paymentStatus.textContent = 'Still processing. Please check back later.';
+        closeSuccessModal.style.display = 'block';
+        closeSuccessModal.textContent = 'Close';
+        closeSuccessModal.onclick = () => {
+          successModal.classList.remove('show');
+        };
+      }
+    }, 1000);
+  }
 
   // Preloader
   window.addEventListener('load', () => {
@@ -1546,7 +1698,9 @@
             currentPaidContent = {
               key: contentKey,
               title: contentData.title,
-              price: contentData.price || 50
+              price: contentData.price || 50,
+              fileUrl: contentData.fileUrl,
+              downloads: contentData.downloads || 0
             };
             paymentAmount.textContent = currentPaidContent.price;
             paymentModal.classList.add('show');
