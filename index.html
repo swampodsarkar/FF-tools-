@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Free Fire Kingdom - Download the best Free Fire mods, skins, and resources">
+<meta name="description" content="Aimzone- Download the best Free Fire mods, skins, and resources">
 <meta property="og:title" content="🔥 Aim Zone  🔥">
 <meta property="og:description" content="Download the best Free Fire mods, skins, and resources">
 <meta property="og:image" content="https://free-fire-kingdom.firebasestorage.app/social-share.jpg">
@@ -11,6 +11,8 @@
 
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Righteous&display=swap" rel="stylesheet">
 <!-- Tawilnk CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
@@ -48,6 +50,17 @@
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background 10s ease;
+  }
+
+  /* Color cycle animation */
+  @keyframes colorCycle {
+    0% { --primary-color: #ff5c00; --secondary-color: #ff9a00; }
+    20% { --primary-color: #00b4ff; --secondary-color: #0088ff; }
+    40% { --primary-color: #9c27b0; --secondary-color: #e91e63; }
+    60% { --primary-color: #4caf50; --secondary-color: #8bc34a; }
+    80% { --primary-color: #ff9800; --secondary-color: #ffc107; }
+    100% { --primary-color: #ff5c00; --secondary-color: #ff9a00; }
   }
 
   /* Preloader */
@@ -71,7 +84,7 @@
   .loader {
     width: 48px;
     height: 48px;
-    border: 5px solid #ff7a00;
+    border: 5px solid var(--primary-color, #ff7a00);
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
@@ -85,15 +98,16 @@
   .loader-text {
     margin-top: 20px;
     font-size: 1.2rem;
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
     text-align: center;
+    font-family: 'Righteous', cursive;
   }
 
   /* Header with Navigation */
   header {
     background: linear-gradient(90deg, #1c1f2a 0%, #222533 100%);
     padding: 1rem;
-    box-shadow: 0 0 15px 3px rgba(255, 122, 0, 0.25);
+    box-shadow: 0 0 15px 3px rgba(var(--primary-rgb, 255, 92, 0), 0.25);
     position: relative;
     z-index: 1000;
     display: flex;
@@ -103,18 +117,19 @@
   .logo {
     font-weight: 700;
     font-size: 1.8rem;
-    background: linear-gradient(45deg, #ff5c00, #ff9a00);
+    background: linear-gradient(45deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff9a00));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 12px rgba(255, 92, 0, 0.3);
+    text-shadow: 0 0 12px rgba(var(--primary-rgb, 255, 92, 0), 0.3);
     user-select: none;
     text-decoration: none;
+    font-family: 'Righteous', cursive;
   }
   .nav-toggle {
     display: none;
     background: none;
     border: none;
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
     font-size: 1.5rem;
     cursor: pointer;
   }
@@ -128,9 +143,10 @@
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    font-family: 'Poppins', sans-serif;
   }
   nav a:hover {
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
   }
   nav a::after {
     content: '';
@@ -139,7 +155,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #ff7a00;
+    background: var(--primary-color, #ff7a00);
     transition: width 0.3s ease;
   }
   nav a:hover::after {
@@ -154,7 +170,7 @@
     margin-left: 1rem;
   }
 
-  /* Notice Banner - Updated with Tawilnk animations */
+  /* Notice Banner */
   #noticeBanner {
     position: fixed;
     top: 50%;
@@ -162,14 +178,14 @@
     transform: translate(-50%, -50%);
     max-width: 580px;
     width: 90%;
-    background: linear-gradient(135deg, #ff5c00cc, #ff9a0099);
+    background: linear-gradient(135deg, rgba(var(--primary-rgb, 255, 92, 0), 0.8), rgba(var(--secondary-rgb, 255, 154, 0), 0.6));
     color: #fff;
     padding: 1rem 1.6rem;
     border-radius: 12px;
     font-weight: 600;
     font-size: 1rem;
     text-align: center;
-    box-shadow: 0 0 12px #ff5c00cc, 0 0 30px 4px #ff7a0099;
+    box-shadow: 0 0 12px rgba(var(--primary-rgb, 255, 92, 0), 0.8), 0 0 30px 4px rgba(var(--secondary-rgb, 255, 122, 0), 0.6);
     opacity: 0;
     pointer-events: none;
     transition: all 0.6s ease;
@@ -212,13 +228,13 @@
     position: fixed;
     top: 90px;
     right: 16px;
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     padding: 6px 12px;
     border-radius: 20px;
     color: white;
     font-weight: 700;
     font-size: 0.9rem;
-    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
     user-select: none;
     display: flex;
     align-items: center;
@@ -268,7 +284,7 @@
   }
   #searchBox:focus {
     outline: none;
-    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
     width: 200px;
   }
   #searchBox::placeholder {
@@ -307,7 +323,7 @@
     background: #3d3f4a;
   }
   .filter-btn.active {
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
   }
   .filter-btn i {
@@ -333,23 +349,23 @@
     background: rgba(34, 37, 51, 0.8);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(255, 122, 0, 0.15), inset 0 0 10px rgba(255, 122, 0, 0.1);
+    box-shadow: 0 0 10px rgba(var(--primary-rgb, 255, 122, 0), 0.15), inset 0 0 10px rgba(var(--primary-rgb, 255, 122, 0), 0.1);
     display: flex;
     flex-direction: column;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    border: 1px solid rgba(255, 122, 0, 0.1);
+    border: 1px solid rgba(var(--primary-rgb, 255, 122, 0), 0.1);
   }
   article.card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(255, 122, 0, 0.3), inset 0 0 15px rgba(255, 122, 0, 0.15);
+    box-shadow: 0 0 20px rgba(var(--primary-rgb, 255, 122, 0), 0.3), inset 0 0 15px rgba(var(--primary-rgb, 255, 122, 0), 0.15);
   }
   .card-badge {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
     font-weight: bold;
     padding: 2px 8px;
@@ -375,7 +391,7 @@
     width: 100%;
     height: 100px;
     object-fit: cover;
-    border-bottom: 2px solid #ff7a00;
+    border-bottom: 2px solid var(--primary-color, #ff7a00);
     transition: filter 0.3s ease;
   }
   article.card:hover img {
@@ -392,9 +408,10 @@
     font-weight: 600;
     font-size: 0.95rem;
     margin: 0 0 0.3rem 0;
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
     user-select: text;
     line-height: 1.3;
+    font-family: 'Righteous', cursive;
   }
   .card-content p {
     font-size: 0.8rem;
@@ -417,13 +434,13 @@
     align-items: center;
   }
   .card-actions a {
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: #fff;
     padding: 0.3rem 0.8rem;
     border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 3px 10px rgba(255, 122, 0, 0.4);
+    box-shadow: 0 3px 10px rgba(var(--primary-rgb, 255, 122, 0), 0.4);
     transition: all 0.3s ease;
     user-select: none;
     font-size: 0.85rem;
@@ -441,7 +458,7 @@
     transition: color 0.3s ease;
   }
   .like-btn:hover {
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
   }
   .like-btn.liked {
     color: #ff0000;
@@ -462,13 +479,13 @@
     right: 30px;
     width: 45px;
     height: 45px;
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
     border: none;
     border-radius: 50%;
     font-size: 1.3rem;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -494,7 +511,7 @@
     color: #777;
     font-size: 0.9rem;
     user-select: none;
-    box-shadow: inset 0 1px 4px rgba(255, 122, 0, 0.15);
+    box-shadow: inset 0 1px 4px rgba(var(--primary-rgb, 255, 122, 0), 0.15);
     max-width: 1100px;
     margin: 0 auto 1rem auto;
     border-radius: 12px;
@@ -512,7 +529,7 @@
     transition: all 0.3s ease;
   }
   .social-links a:hover {
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
     transform: translateY(-3px);
   }
   .facebook:hover { color: #3b5998; }
@@ -533,13 +550,13 @@
     left: 30px;
     width: 55px;
     height: 55px;
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
     border: none;
     border-radius: 50%;
     font-size: 1.3rem;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -579,13 +596,13 @@
     display: none;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid #ff7a00;
+    border: 1px solid var(--primary-color, #ff7a00);
   }
   #chatBox.show {
     display: flex;
   }
   .chat-header {
-    background: linear-gradient(90deg, #ff5c00, #ff7a00);
+    background: linear-gradient(90deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
     padding: 0.8rem;
     font-weight: 600;
@@ -619,7 +636,7 @@
   }
   .message.user {
     align-self: flex-end;
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
   }
   .message.admin {
@@ -637,7 +654,7 @@
     display: flex;
     padding: 0.8rem;
     background: rgba(45, 48, 61, 0.7);
-    border-top: 1px solid rgba(255, 122, 0, 0.2);
+    border-top: 1px solid rgba(var(--primary-rgb, 255, 122, 0), 0.2);
   }
   #chatMessageInput {
     flex-grow: 1;
@@ -652,7 +669,7 @@
     outline: none;
   }
   #sendMessageBtn {
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
     border: none;
     border-radius: 8px;
@@ -689,8 +706,8 @@
     border-radius: 12px;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 0 20px rgba(255, 122, 0, 0.5);
-    border: 1px solid rgba(255, 122, 0, 0.2);
+    box-shadow: 0 0 20px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
+    border: 1px solid rgba(var(--primary-rgb, 255, 122, 0), 0.2);
   }
   .modal-header {
     display: flex;
@@ -700,7 +717,7 @@
   }
   .modal-header h3 {
     margin: 0;
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
     font-size: 1.3rem;
   }
   .close-modal {
@@ -737,7 +754,7 @@
     transition: all 0.3s ease;
   }
   .modal-btn-primary {
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
   }
   .modal-btn-primary:hover {
@@ -767,8 +784,8 @@
     transition: all 0.3s ease;
   }
   .payment-method.selected {
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
-    box-shadow: 0 0 10px rgba(255, 122, 0, 0.5);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
+    box-shadow: 0 0 10px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
     color: white;
   }
   .payment-method i {
@@ -791,7 +808,7 @@
     line-height: 1.5;
   }
 
-  /* Success Modal - Updated with Tawilnk animations */
+  /* Success Modal */
   #successModal {
     display: none;
     position: fixed;
@@ -818,8 +835,8 @@
     border-radius: 12px;
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 0 20px rgba(255, 122, 0, 0.5);
-    border: 1px solid rgba(255, 122, 0, 0.2);
+    box-shadow: 0 0 20px rgba(var(--primary-rgb, 255, 122, 0), 0.5);
+    border: 1px solid rgba(var(--primary-rgb, 255, 122, 0), 0.2);
     text-align: center;
     animation: slideUp 0.5s ease-out forwards;
   }
@@ -853,7 +870,7 @@
   .progress {
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg, #ff5c00, #ff7a00);
+    background: linear-gradient(90deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     border-radius: 3px;
     transition: width 0.1s linear;
   }
@@ -868,7 +885,7 @@
     box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
   }
   body.light-theme .logo {
-    background: linear-gradient(45deg, #ff5c00, #ff9a00);
+    background: linear-gradient(45deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff9a00));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: none;
@@ -877,14 +894,14 @@
     color: #555;
   }
   body.light-theme nav a:hover {
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
   }
   body.light-theme article.card {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
   body.light-theme .card-content h3 {
-    color: #ff7a00;
+    color: var(--primary-color, #ff7a00);
   }
   body.light-theme .card-content p {
     color: #666;
@@ -932,7 +949,7 @@
     color: #333;
   }
   body.light-theme .payment-method.selected {
-    background: linear-gradient(135deg, #ff5c00, #ff7a00);
+    background: linear-gradient(135deg, var(--primary-color, #ff5c00), var(--secondary-color, #ff7a00));
     color: white;
   }
   body.light-theme .payment-number {
@@ -1189,7 +1206,7 @@
   </div>
 </div>
 
-<!-- Success Modal - Updated with progress bar -->
+<!-- Success Modal -->
 <div class="modal" id="successModal">
   <div class="success-content">
     <div class="success-icon">
@@ -1269,8 +1286,17 @@
   let visitorId = null;
   let currentPaidContent = null;
   let selectedPaymentMethod = 'bkash';
-  let userChats = {};
   let paymentCheckInterval = null;
+  
+  // Color variables
+  let currentColorIndex = 0;
+  const colors = [
+    { primary: '#ff5c00', secondary: '#ff9a00', rgb: '255, 92, 0' },
+    { primary: '#00b4ff', secondary: '#0088ff', rgb: '0, 180, 255' },
+    { primary: '#9c27b0', secondary: '#e91e63', rgb: '156, 39, 176' },
+    { primary: '#4caf50', secondary: '#8bc34a', rgb: '76, 175, 80' },
+    { primary: '#ff9800', secondary: '#ffc107', rgb: '255, 152, 0' }
+  ];
 
   // Close modals when clicking close button
   closeModalBtns.forEach(btn => {
@@ -1482,6 +1508,56 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  // Color cycling effect
+  function updateColors() {
+    const color = colors[currentColorIndex];
+    document.documentElement.style.setProperty('--primary-color', color.primary);
+    document.documentElement.style.setProperty('--secondary-color', color.secondary);
+    document.documentElement.style.setProperty('--primary-rgb', color.rgb);
+    
+    currentColorIndex = (currentColorIndex + 1) % colors.length;
+  }
+  
+  // Start color cycling every 10 seconds
+  updateColors();
+  setInterval(updateColors, 10000);
+
+  // Navigation link functionality
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = link.getAttribute('href').substring(1);
+      
+      if (target === 'about') {
+        // Show about information
+        noticeBanner.innerHTML = `
+          <span>Made by Swampod Sarkar | Powered by Ghost Eye</span>
+          <button class="close-notice">×</button>
+        `;
+        noticeBanner.classList.add('show');
+        
+        // Re-attach close event
+        noticeBanner.querySelector('.close-notice').addEventListener('click', () => {
+          noticeBanner.classList.remove('show');
+        });
+      } else if (target === 'new') {
+        // Filter for new content (last 7 days)
+        document.querySelector('.filter-btn[data-filter="new"]').click();
+      } else if (target === 'trending') {
+        // Filter for top content
+        document.querySelector('.filter-btn[data-filter="top"]').click();
+      } else {
+        // Default behavior (home)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      
+      // Close mobile nav if open
+      if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+      }
+    });
+  });
+
   // Live Chat functionality
   chatButton.addEventListener('click', () => {
     if (!currentUser || !currentUser.username) {
@@ -1513,25 +1589,28 @@
     const message = chatMessageInput.value.trim();
     if (message && currentUser) {
       const timestamp = Date.now();
-      db.ref(`userChats/${currentUser.username}/messages`).push().set({
+      const newMessageRef = db.ref(`chats/${currentUser.username}/messages`).push();
+      
+      newMessageRef.set({
         userId: currentUser.username,
         username: currentUser.username,
         message: message,
         timestamp: timestamp,
         isAdmin: false
+      }).then(() => {
+        // Also send to admin chat
+        db.ref('adminChats').push().set({
+          userId: currentUser.username,
+          username: currentUser.username,
+          message: message,
+          timestamp: timestamp,
+          isAdmin: false,
+          userMessageId: newMessageRef.key
+        });
+        
+        chatMessageInput.value = '';
+        lastMessageTime = timestamp;
       });
-      
-      // Also send to admin chat
-      db.ref('adminChats').push().set({
-        userId: currentUser.username,
-        username: currentUser.username,
-        message: message,
-        timestamp: timestamp,
-        isAdmin: false
-      });
-      
-      chatMessageInput.value = '';
-      lastMessageTime = timestamp;
     }
   }
 
@@ -1541,13 +1620,11 @@
     
     chatMessages.innerHTML = '';
     
-    db.ref(`userChats/${currentUser.username}/messages`).orderByChild('timestamp').limitToLast(50).on('value', snapshot => {
-      const messages = [];
-      snapshot.forEach(child => {
-        messages.push(child.val());
-      });
+    db.ref(`chats/${currentUser.username}/messages`).orderByChild('timestamp').limitToLast(50).on('value', snapshot => {
+      chatMessages.innerHTML = ''; // Clear existing messages
       
-      messages.forEach(msg => {
+      snapshot.forEach(child => {
+        const msg = child.val();
         const messageElement = document.createElement('div');
         messageElement.className = `message ${msg.isAdmin ? 'admin' : 'user'}`;
         messageElement.innerHTML = `
@@ -1576,12 +1653,9 @@
     const savedUsername = localStorage.getItem('ffk_username');
     if (savedUsername) {
       currentUser = { username: savedUsername };
-      loadUserChat();
-    }
-    
-    // Listen for admin replies
-    if (currentUser && currentUser.username) {
-      db.ref(`userChats/${currentUser.username}/messages`).orderByChild('timestamp').limitToLast(1).on('child_added', snapshot => {
+      
+      // Listen for new admin messages
+      db.ref(`chats/${currentUser.username}/messages`).orderByChild('timestamp').limitToLast(1).on('child_added', snapshot => {
         const msg = snapshot.val();
         if (msg.isAdmin && !chatOpen) {
           unreadMessages++;
@@ -1627,20 +1701,7 @@
       button.classList.add('active');
       
       const filter = button.dataset.filter;
-      const cards = document.querySelectorAll('.card');
-      
-      cards.forEach(card => {
-        if (filter === 'all') {
-          card.style.display = 'flex';
-        } else {
-          const cardType = card.dataset.type || '';
-          if (cardType.includes(filter)) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        }
-      });
+      loadContent(filter);
     });
   });
 
@@ -1716,14 +1777,30 @@
     }
   }
 
-  // Load content cards
-  function loadContent() {
+  // Load content cards with filtering
+  function loadContent(filter = 'all') {
     db.ref('contents').once('value').then(snapshot => {
       const data = snapshot.val() || {};
       contentSection.innerHTML = '';
 
-      // Sort by downloads desc
-      const entries = Object.entries(data).sort((a, b) => (b[1].downloads || 0) - (a[1].downloads || 0));
+      // Convert to array and sort
+      let entries = Object.entries(data);
+      
+      // Apply filter
+      if (filter === 'top') {
+        entries = entries.sort((a, b) => (b[1].downloads || 0) - (a[1].downloads || 0));
+      } else if (filter === 'new') {
+        const now = Date.now();
+        const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);
+        entries = entries.filter(([key, item]) => item.timestamp && item.timestamp > sevenDaysAgo);
+        entries = entries.sort((a, b) => (b[1].timestamp || 0) - (a[1].timestamp || 0));
+      } else if (filter === 'emulator' || filter === 'sensi') {
+        entries = entries.filter(([key, item]) => item.type === filter);
+        entries = entries.sort((a, b) => (b[1].downloads || 0) - (a[1].downloads || 0));
+      } else {
+        // Default sorting for 'all'
+        entries = entries.sort((a, b) => (b[1].downloads || 0) - (a[1].downloads || 0));
+      }
 
       entries.forEach(([key, item]) => {
         const imgSrc = item.imageUrl && item.imageUrl.trim() !== '' ? item.imageUrl : 'https://via.placeholder.com/160x100?text=No+Image';
